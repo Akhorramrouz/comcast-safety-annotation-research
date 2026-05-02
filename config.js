@@ -1,7 +1,7 @@
 // ─── FILL IN THESE VALUES ────────────────────────────────────────────────────
 const CONFIG = {
   owner:    "Akhorramrouz",
-  repo:     "annotation_web_app",
+  repo:     "comcast-safety-annotation-research",
   branch:   "main",
   filePath: "data/prompts.csv",
 };
