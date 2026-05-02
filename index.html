@@ -42,34 +42,53 @@
         <p class="hint">Needs <code>repo</code> scope on the target repository. Never shared or stored.</p>
 
         <button type="submit" class="btn-primary">
-          <span class="spinner" id="login-spinner"></span>
+          <span class="spinner"></span>
           Start annotating
         </button>
       </form>
     </div>
   </div>
 
-  <!-- ─── Annotation screen ────────────────────────────────────────────── -->
-  <div id="annotate-screen" class="screen">
+  <!-- ─── Step 1: Category question ───────────────────────────────────── -->
+  <div id="step1-screen" class="screen">
     <div class="card">
-      <p class="progress-label" id="progress-label">0 of 0 annotated</p>
+      <p class="progress-label" id="s1-progress-label">0 of 0 annotated</p>
       <div class="progress-bar-wrap">
-        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+        <div class="progress-bar-fill" id="s1-progress-fill" style="width:0%"></div>
       </div>
 
-      <div class="prompt-box" id="prompt-text"></div>
+      <div class="prompt-box" id="s1-prompt-text"></div>
 
-      <div id="annotate-error" class="error-msg"></div>
+      <div id="step1-error" class="error-msg"></div>
 
-      <form id="annotate-form" novalidate>
-
-        <!-- Q1 — Category -->
+      <form id="step1-form" novalidate>
         <div class="question-block">
           <legend>Q1 — Which category best describes this prompt?</legend>
-          <div class="radio-group" id="category-group">
-            <!-- populated dynamically -->
-          </div>
+          <div class="radio-group" id="category-group"></div>
         </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-primary">Next →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Step 2: Policy reveal + color questions ──────────────────────── -->
+  <div id="step2-screen" class="screen">
+    <div class="card">
+      <p class="progress-label" id="s2-progress-label">0 of 0 annotated</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="s2-progress-fill" style="width:0%"></div>
+      </div>
+
+      <div class="prompt-box" id="s2-prompt-text"></div>
+
+      <div class="policy-box" id="policy-box"></div>
+
+      <div id="step2-error" class="error-msg"></div>
+
+      <form id="step2-form" novalidate>
 
         <!-- Q2 — Color 3-way -->
         <div class="question-block">
@@ -113,6 +132,7 @@
   <!-- Dependencies -->
   <script src="papaparse.min.js"></script>
   <script src="config.js"></script>
+  <script src="policy.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

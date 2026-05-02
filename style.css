@@ -172,6 +172,49 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .spinner.visible { display: inline-block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* Policy box */
+.policy-box {
+  background: #fffbeb;
+  border: 1.5px solid #fcd34d;
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.policy-title {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #92400e;
+  margin-bottom: .85rem;
+}
+.policy-rule {
+  margin-bottom: .85rem;
+}
+.policy-rule:last-child { margin-bottom: 0; }
+.policy-code {
+  display: inline-block;
+  background: #fde68a;
+  color: #78350f;
+  font-size: .72rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: .1rem .4rem;
+  margin-right: .4rem;
+  vertical-align: middle;
+}
+.policy-name {
+  font-weight: 600;
+  font-size: .9rem;
+  vertical-align: middle;
+}
+.policy-desc {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: .25rem;
+  line-height: 1.5;
+}
+
 /* Done screen */
 .done-icon { font-size: 3rem; margin-bottom: 1rem; text-align: center; }
 .done-card { text-align: center; }
