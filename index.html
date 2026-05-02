@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Annotation Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── Login screen ─────────────────────────────────────────────────── -->
+  <div id="login-screen" class="screen active">
+    <div class="card">
+      <h1>Prompt Annotation</h1>
+      <p class="subtitle">Enter your annotator code and GitHub token to begin.</p>
+
+      <div id="login-error" class="error-msg"></div>
+
+      <form id="login-form" novalidate>
+        <label for="annotator-code">Annotator code</label>
+        <input
+          type="text"
+          id="annotator-code"
+          placeholder="e.g. ANNOTATOR_NAME"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          maxlength="32"
+          required
+        />
+        <p class="hint">Letters, numbers, underscores · max 32 chars. Spaces become underscores.</p>
+
+        <label for="github-pat">GitHub Personal Access Token</label>
+        <input
+          type="password"
+          id="github-pat"
+          placeholder="ghp_…"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        />
+        <p class="hint">Needs <code>repo</code> scope on the target repository. Never shared or stored.</p>
+
+        <button type="submit" class="btn-primary">
+          <span class="spinner" id="login-spinner"></span>
+          Start annotating
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Annotation screen ────────────────────────────────────────────── -->
+  <div id="annotate-screen" class="screen">
+    <div class="card">
+      <p class="progress-label" id="progress-label">0 of 0 annotated</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+
+      <div class="prompt-box" id="prompt-text"></div>
+
+      <div id="annotate-error" class="error-msg"></div>
+
+      <form id="annotate-form" novalidate>
+
+        <!-- Q1 — Category -->
+        <div class="question-block">
+          <legend>Q1 — Which category best describes this prompt?</legend>
+          <div class="radio-group" id="category-group">
+            <!-- populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Q2 — Color 3-way -->
+        <div class="question-block">
+          <legend>Q2 — If you had to label this prompt a colour, would it be blue, red, or yellow?</legend>
+          <div class="radio-group">
+            <label><input type="radio" name="color3" value="blue"> Blue</label>
+            <label><input type="radio" name="color3" value="red"> Red</label>
+            <label><input type="radio" name="color3" value="yellow"> Yellow</label>
+          </div>
+        </div>
+
+        <!-- Q3 — Color 2-way -->
+        <div class="question-block">
+          <legend>Q3 — Choosing only between red and blue, which would you pick?</legend>
+          <div class="radio-group">
+            <label><input type="radio" name="color2" value="red"> Red</label>
+            <label><input type="radio" name="color2" value="blue"> Blue</label>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-primary">
+            <span class="spinner"></span>
+            Submit &amp; next
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Done screen ──────────────────────────────────────────────────── -->
+  <div id="done-screen" class="screen">
+    <div class="card done-card">
+      <div class="done-icon">&#10003;</div>
+      <h1>All done!</h1>
+      <p>You have annotated every prompt assigned to you. Thank you!</p>
+    </div>
+  </div>
+
+  <!-- Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
+          integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghqhZmdjs57ljYe1S66ejFjiMRiKN0FjB1SQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
