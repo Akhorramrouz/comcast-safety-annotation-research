@@ -49,7 +49,8 @@ async function fetchCsv() {
   if (!res.ok) throw new Error(`GitHub API error ${res.status}: ${res.statusText}`);
   const json = await res.json();
   csvSha = json.sha;
-  return atob(json.content.replace(/\n/g, ""));
+  const bytes = Uint8Array.from(atob(json.content.replace(/\n/g, "")), c => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
 }
 
 async function pushCsv(csvString) {
@@ -128,7 +129,7 @@ document.getElementById("login-form").addEventListener("submit", async e => {
 
   annotatorCode = rawCode;
   pat = rawPat || CONFIG.pat;
-  sessionStorage.setItem("annotatorCode", annotatorCode);
+  localStorage.setItem("annotatorCode", annotatorCode);
 
   const btn = e.target.querySelector("button[type=submit]");
   const spin = btn.querySelector(".spinner");
@@ -181,6 +182,14 @@ function showStep1() {
   clearError("step1-error");
   unsavedAnswer = false;
   document.getElementById("step1-form").addEventListener("change", () => { unsavedAnswer = true; }, { once: true });
+
+  const banner = document.getElementById("resume-banner");
+  if (annotatedCount > 0) {
+    banner.textContent = `Resuming — you have already annotated ${annotatedCount} of ${totalRows} prompts.`;
+    banner.classList.add("visible");
+  } else {
+    banner.classList.remove("visible");
+  }
 
   showScreen("step1-screen");
 }
@@ -283,6 +292,12 @@ function showDoneScreen() {
 window.addEventListener("beforeunload", e => {
   if (unsavedAnswer) { e.preventDefault(); }
 });
+
+// ─── Pre-fill annotator code from last session ───────────────────────────────
+(function () {
+  const saved = localStorage.getItem("annotatorCode");
+  if (saved) document.getElementById("annotator-code").value = saved;
+})();
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 function escHtml(str) {

@@ -172,6 +172,20 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .spinner.visible { display: inline-block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* Resume banner */
+.resume-banner {
+  display: none;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  color: #166534;
+  border-radius: 6px;
+  padding: .55rem .9rem;
+  font-size: .875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.resume-banner.visible { display: block; }
+
 /* Policy box */
 .policy-box {
   background: #fffbeb;
