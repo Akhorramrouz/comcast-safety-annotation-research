@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annotation Guidelines – Prompt Safety Study</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { align-items: flex-start; }
+    .screen { display: block; max-width: 760px; margin: 2rem auto; }
+    .card + .card { margin-top: 1.5rem; }
+    h2 { font-size: 1.1rem; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: .4rem; margin-bottom: 1rem; }
+    h3 { font-size: .95rem; font-weight: 700; margin: 1.1rem 0 .4rem; }
+    p, li { font-size: .92rem; line-height: 1.7; color: var(--text); }
+    ul, ol { padding-left: 1.4rem; margin-bottom: .75rem; }
+    li { margin-bottom: .35rem; }
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: .1rem .45rem;
+      vertical-align: middle;
+      margin-right: .3rem;
+    }
+    .tag-do   { background: #d1fae5; color: #065f46; }
+    .tag-dont { background: #fee2e2; color: #991b1b; }
+    .rule-block {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .55rem .75rem;
+      border-radius: 6px;
+      margin-bottom: .5rem;
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+    .rule-do   { background: #f0fdf4; border: 1.5px solid #86efac; }
+    .rule-dont { background: #fef2f2; border: 1.5px solid #fca5a5; }
+    .notice {
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.25rem;
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .notice strong { color: #92400e; }
+    .q-block {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .q-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .35rem; }
+    .q-text  { font-weight: 600; font-size: .95rem; margin-bottom: .5rem; }
+    .q-desc  { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+    table { width: 100%; border-collapse: collapse; font-size: .875rem; margin-top: .5rem; }
+    th { text-align: left; padding: .45rem .7rem; background: var(--bg); font-weight: 700; border: 1px solid var(--border); }
+    td { padding: .45rem .7rem; border: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .back-link { display: inline-block; margin-bottom: 1.25rem; font-size: .875rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="screen">
+
+  <a class="back-link" href="index.html">← Back to annotation tool</a>
+
+  <!-- Header -->
+  <div class="card">
+    <h1>Annotation Guidelines</h1>
+    <p class="subtitle">Prompt Safety Study &mdash; Please read carefully before you begin annotating.</p>
+
+    <div class="notice">
+      <strong>&#9888; Important:</strong> This is an independent human annotation study. You must complete all annotations <strong>on your own</strong>, without consulting other annotators, and <strong>without using any AI tools</strong> (e.g., ChatGPT, Claude, Gemini, Copilot, or any similar system) at any point during the annotation process. Violations compromise the integrity of the dataset and may result in your annotations being excluded.
+    </div>
+
+    <p>
+      This study is part of a research project investigating how AI language models respond to prompts across different domains. Your role is to read each prompt and answer three structured questions about it. Your judgements will be used to build a high-quality ground-truth dataset for evaluating AI safety policies.
+    </p>
+  </div>
+
+  <!-- Your role -->
+  <div class="card">
+    <h2>Your Role &amp; Responsibilities</h2>
+    <p>You are a <strong>human annotator</strong>. Your task is to read each prompt carefully and make independent, considered judgements. You are <em>not</em> evaluating the AI's response — you are evaluating the <strong>prompt itself</strong>.</p>
+
+    <h3>What you will do</h3>
+    <ul>
+      <li>Read each prompt displayed on screen.</li>
+      <li>Select the domain category or categories the prompt belongs to.</li>
+      <li>Decide whether the prompt violates any of the safety policies shown for that domain.</li>
+      <li>Rate your confidence in that decision.</li>
+      <li>Submit your answers. The tool will automatically save your progress.</li>
+    </ul>
+
+    <h3>What you will not do</h3>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Use any AI assistant or chatbot to help evaluate a prompt.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Discuss specific prompts or your answers with other annotators before submitting.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Rush. Quality matters far more than speed.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Leave the page mid-session with unsaved answers — the tool will warn you if you try.</div>
+  </div>
+
+  <!-- Step-by-step -->
+  <div class="card">
+    <h2>Annotation Steps</h2>
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <div class="q-label">Step 1 &mdash; Category</div>
+      <div class="q-text">Q1 — Select all categories that apply to this prompt.</div>
+      <div class="q-desc">
+        Choose one or more of the predefined domain categories that best describe the subject matter of the prompt. You may select as many as apply, or none if the prompt does not clearly fit any category.
+      </div>
+    </div>
+
+    <h3>Domain categories</h3>
+    <table>
+      <tr><th>Category</th><th>Covers</th></tr>
+      <tr><td>Computing</td><td>Software, programming, cybersecurity, data systems</td></tr>
+      <tr><td>Engineering</td><td>Mechanical, civil, electrical, chemical, industrial design</td></tr>
+      <tr><td>Health &amp; Medicine</td><td>Medical advice, diagnoses, treatments, pharmacology</td></tr>
+      <tr><td>History</td><td>Historical events, figures, cultural heritage, revisionism</td></tr>
+      <tr><td>Law &amp; Crime</td><td>Legal advice, criminal procedures, evidence, statutes</td></tr>
+      <tr><td>Mental Health</td><td>Psychology, emotional support, therapy, crisis situations</td></tr>
+      <tr><td>Philosophy</td><td>Ethics, ontology, logic, rhetoric, ideology</td></tr>
+      <tr><td>Politics</td><td>Political campaigns, elections, policy, governance</td></tr>
+    </table>
+
+    <h3>Tips for Q1</h3>
+    <div class="rule-block rule-do"><span class="tag tag-do">DO</span> Select multiple categories if the prompt genuinely spans more than one domain.</div>
+    <div class="rule-block rule-do"><span class="tag tag-do">DO</span> Focus on what the prompt is <em>asking for</em>, not incidental words in the text.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Select a category simply because a keyword from that domain appears in the prompt.</div>
+
+    <!-- Q2 -->
+    <div class="q-block" style="margin-top:1.5rem">
+      <div class="q-label">Step 2 &mdash; Policy Violation</div>
+      <div class="q-text">Q2 — Does this prompt's request violate any of the safety policies presented above?</div>
+      <div class="q-desc">
+        On this screen, the safety policies for the prompt's actual domain are displayed. Read them carefully. Then decide: does what the prompt is asking for fall within the scope of any listed violation?
+        <br><br>
+        <strong>Yes, it violates a policy</strong> — the prompt is requesting something that one or more of the listed policies explicitly prohibit or flag as harmful.<br>
+        <strong>No, it does not violate any policy</strong> — the prompt is a legitimate request that does not trigger any of the listed policies.
+      </div>
+    </div>
+
+    <h3>Tips for Q2</h3>
+    <div class="rule-block rule-do"><span class="tag tag-do">DO</span> Read every policy rule before deciding — a violation may be in a rule you almost skipped.</div>
+    <div class="rule-block rule-do"><span class="tag tag-do">DO</span> Base your decision solely on the policies shown — not on your general moral intuition.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Assume a prompt is safe just because it uses polite or academic language.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Assume a prompt is harmful just because the topic sounds sensitive — context matters.</div>
+
+    <!-- Q3 -->
+    <div class="q-block" style="margin-top:1.5rem">
+      <div class="q-label">Step 2 &mdash; Confidence</div>
+      <div class="q-text">Q3 — How confident are you in your response to the preceding question?</div>
+      <div class="q-desc">
+        <strong>Completely confident</strong> — the prompt clearly does or does not match a policy; you have no meaningful doubt.<br>
+        <strong>Somewhat confident, though not entirely certain</strong> — you have a considered opinion but acknowledge genuine ambiguity in how the prompt or policy could be interpreted.
+      </div>
+    </div>
+
+    <h3>Tips for Q3</h3>
+    <div class="rule-block rule-do"><span class="tag tag-do">DO</span> Be honest. Marking uncertainty is valuable data — it signals edge cases for the research team.</div>
+    <div class="rule-block rule-dont"><span class="tag tag-dont">DON&rsquo;T</span> Always select &ldquo;Completely confident&rdquo; to appear decisive. Overconfidence degrades data quality.</div>
+  </div>
+
+  <!-- Common edge cases -->
+  <div class="card">
+    <h2>Common Edge Cases</h2>
+
+    <h3>The prompt asks about a sensitive topic but for legitimate reasons</h3>
+    <p>A researcher asking how SQL injection works for a security audit is <em>not</em> the same as someone requesting code to attack a live system. Focus on the <strong>intent implied by the phrasing</strong> and whether the policy language covers it.</p>
+
+    <h3>The prompt is ambiguous</h3>
+    <p>If a prompt could be read either as benign or as a policy violation depending on context, annotate based on the <strong>most reasonable interpretation</strong> of a typical user sending that exact text. Mark Q3 as &ldquo;somewhat confident.&rdquo;</p>
+
+    <h3>The prompt spans multiple domains</h3>
+    <p>Select all relevant categories in Q1. For Q2, the tool will show policies for the prompt&rsquo;s <em>actual</em> ground-truth domain from the dataset — evaluate against those policies regardless of which categories you selected.</p>
+
+    <h3>You are not a subject-matter expert in this domain</h3>
+    <p>Do your best using the policy descriptions provided. If the technical detail of a prompt is beyond your expertise, rely on the plain-language description of the policy rule and mark Q3 accordingly.</p>
+  </div>
+
+  <!-- Integrity & data quality -->
+  <div class="card">
+    <h2>Data Integrity &amp; Ethical Conduct</h2>
+    <ul>
+      <li><strong>Independent work only.</strong> Each annotation must reflect your own, unaided judgement. Coordination with other annotators before submitting skews inter-annotator agreement metrics.</li>
+      <li><strong>No AI assistance.</strong> Using an AI tool to evaluate a prompt — even to &ldquo;double-check&rdquo; — invalidates your annotation. The entire purpose of this study is to capture <em>human</em> judgement.</li>
+      <li><strong>No reverse-engineering the ground truth.</strong> Do not attempt to infer the &ldquo;correct&rdquo; answer from metadata, column names, or other visible information. Annotate based on what you read.</li>
+      <li><strong>Consistency.</strong> Apply the same standard throughout. If you decide that a particular type of phrasing does not constitute a violation, apply that decision consistently across similar prompts.</li>
+      <li><strong>Reporting concerns.</strong> If you encounter a prompt that you find distressing or that you believe should not be in the dataset, note the prompt number and contact the research lead rather than skipping it silently.</li>
+    </ul>
+  </div>
+
+  <!-- Practical tips -->
+  <div class="card">
+    <h2>Practical Tips</h2>
+    <ul>
+      <li>Your progress is saved automatically after each submission — you can close the browser and resume later using your annotator code.</li>
+      <li>Each prompt is reviewed by exactly two annotators. Your contribution directly shapes the reliability of the final dataset.</li>
+      <li>There is no time pressure. A careful annotation session of 30–60 minutes is preferable to a rushed one.</li>
+      <li>If you accidentally close the tab before submitting Step 2, the browser will warn you. If you lose a partially completed annotation, simply re-open the tool — it will resume from the last <em>saved</em> prompt.</li>
+    </ul>
+  </div>
+
+  <a class="back-link" href="index.html">← Back to annotation tool</a>
+
+</div>
+</body>
+</html>
