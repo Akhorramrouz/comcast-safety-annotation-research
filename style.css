@@ -148,7 +148,8 @@ button:disabled { opacity: .5; cursor: not-allowed; }
   border-color: var(--accent);
   background: #eef1ff;
 }
-.radio-group input[type="radio"] { accent-color: var(--accent); }
+.radio-group input[type="radio"],
+.radio-group input[type="checkbox"] { accent-color: var(--accent); }
 
 .submit-row {
   display: flex;

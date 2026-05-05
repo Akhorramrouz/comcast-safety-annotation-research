@@ -100,14 +100,30 @@ function domainValues() {
   return vals;
 }
 
+function annotatorCount(row) {
+  return csvFields
+    .filter(f => f.startsWith("annotator_"))
+    .filter(f => (row[f] || "").trim() !== "")
+    .length;
+}
+
 function countAnnotated() {
   const col = colName();
   return csvData.filter(r => (r[col] || "").trim() !== "").length;
 }
 
+function computeTotalRows() {
+  const col = colName();
+  return csvData.filter(r =>
+    (r[col] || "").trim() !== "" || annotatorCount(r) < 2
+  ).length;
+}
+
 function nextUnannotated() {
   const col = colName();
-  return csvData.findIndex(r => (r[col] || "").trim() === "");
+  return csvData.findIndex(r =>
+    (r[col] || "").trim() === "" && annotatorCount(r) < 2
+  );
 }
 
 // ─── Login ────────────────────────────────────────────────────────────────────
@@ -147,8 +163,8 @@ document.getElementById("login-form").addEventListener("submit", async e => {
       csvData.forEach(r => { r[colName()] = ""; });
     }
 
-    totalRows = csvData.length;
     annotatedCount = countAnnotated();
+    totalRows = computeTotalRows();
     currentRowIndex = nextUnannotated();
 
     if (currentRowIndex === -1) showDoneScreen();
@@ -174,7 +190,7 @@ function showStep1() {
   domainValues().forEach(val => {
     catGroup.insertAdjacentHTML("beforeend", `
       <label>
-        <input type="radio" name="category" value="${escHtml(val)}">
+        <input type="checkbox" name="category" value="${escHtml(val)}">
         ${escHtml(val)}
       </label>`);
   });
@@ -198,13 +214,10 @@ document.getElementById("step1-form").addEventListener("submit", e => {
   e.preventDefault();
   clearError("step1-error");
 
-  const category = document.querySelector('input[name="category"]:checked')?.value;
-  if (!category) {
-    showError("step1-error", "Please select a category before continuing.");
-    return;
-  }
+  const checked = [...document.querySelectorAll('input[name="category"]:checked')];
+  const pendingCategories = checked.map(el => el.value);
 
-  pendingCategory = category;
+  pendingCategory = pendingCategories;
   showStep2();
 });
 
@@ -234,7 +247,7 @@ function showStep2() {
   }
 
   // Reset color radios
-  document.querySelectorAll('input[name="color3"], input[name="color2"]').forEach(r => r.checked = false);
+  document.querySelectorAll('input[name="violation"], input[name="confidence"]').forEach(r => r.checked = false);
 
   clearError("step2-error");
   document.getElementById("step2-form").addEventListener("change", () => { unsavedAnswer = true; }, { once: true });
@@ -246,11 +259,11 @@ document.getElementById("step2-form").addEventListener("submit", async e => {
   e.preventDefault();
   clearError("step2-error");
 
-  const color3 = document.querySelector('input[name="color3"]:checked')?.value;
-  const color2 = document.querySelector('input[name="color2"]:checked')?.value;
+  const violation  = document.querySelector('input[name="violation"]:checked')?.value;
+  const confidence = document.querySelector('input[name="confidence"]:checked')?.value;
 
-  if (!color3 || !color2) {
-    showError("step2-error", "Please answer both colour questions before submitting.");
+  if (!violation || !confidence) {
+    showError("step2-error", "Please answer both questions before submitting.");
     return;
   }
 
@@ -259,7 +272,7 @@ document.getElementById("step2-form").addEventListener("submit", async e => {
   btn.disabled = true;
   spin.classList.add("visible");
 
-  csvData[currentRowIndex][colName()] = JSON.stringify({ category: pendingCategory, color3, color2 });
+  csvData[currentRowIndex][colName()] = JSON.stringify({ category: pendingCategory, violation, confidence });
   unsavedAnswer = false;
   annotatedCount++;
 

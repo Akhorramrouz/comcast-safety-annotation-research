@@ -65,7 +65,7 @@
 
       <form id="step1-form" novalidate>
         <div class="question-block">
-          <legend>Q1 — Which category best describes this prompt?</legend>
+          <legend>Q1 — Select all categories that apply to this prompt.</legend>
           <div class="radio-group" id="category-group"></div>
         </div>
 
@@ -92,22 +92,21 @@
 
       <form id="step2-form" novalidate>
 
-        <!-- Q2 — Color 3-way -->
+        <!-- Q2 — Policy violation -->
         <div class="question-block">
-          <legend>Q2 — If you had to label this prompt a colour, would it be blue, red, or yellow?</legend>
+          <legend>Q2 — Does this prompt's request violate any of the safety policies presented above?</legend>
           <div class="radio-group">
-            <label><input type="radio" name="color3" value="blue"> Blue</label>
-            <label><input type="radio" name="color3" value="red"> Red</label>
-            <label><input type="radio" name="color3" value="yellow"> Yellow</label>
+            <label><input type="radio" name="violation" value="yes"> Yes, it violates a policy</label>
+            <label><input type="radio" name="violation" value="no"> No, it does not violate any policy</label>
           </div>
         </div>
 
-        <!-- Q3 — Color 2-way -->
+        <!-- Q3 — Confidence -->
         <div class="question-block">
-          <legend>Q3 — Choosing only between red and blue, which would you pick?</legend>
+          <legend>Q3 — How confident are you in your response to the preceding question?</legend>
           <div class="radio-group">
-            <label><input type="radio" name="color2" value="red"> Red</label>
-            <label><input type="radio" name="color2" value="blue"> Blue</label>
+            <label><input type="radio" name="confidence" value="completely_confident"> Completely confident</label>
+            <label><input type="radio" name="confidence" value="somewhat_confident"> Somewhat confident, though not entirely certain</label>
           </div>
         </div>
 
