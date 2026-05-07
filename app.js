@@ -16,6 +16,8 @@ const colName = () => `annotator_${annotatorCode}`;
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+  document.body.classList.toggle("guidelines-active", id === "guidelines-screen");
+  if (id === "guidelines-screen") window.scrollTo(0, 0);
 }
 
 function showError(containerId, msg) {
@@ -168,13 +170,27 @@ document.getElementById("login-form").addEventListener("submit", async e => {
     currentRowIndex = nextUnannotated();
 
     if (currentRowIndex === -1) showDoneScreen();
-    else showStep1();
+    else showGuidelines();
   } catch (err) {
     showError("login-error", err.message);
   } finally {
     btn.disabled = false;
     spin.classList.remove("visible");
   }
+});
+
+// ─── Guidelines ───────────────────────────────────────────────────────────────
+function showGuidelines() {
+  const checkbox = document.getElementById("acknowledge-check");
+  const btn = document.getElementById("start-annotating-btn");
+  checkbox.checked = false;
+  btn.disabled = true;
+  checkbox.onchange = () => { btn.disabled = !checkbox.checked; };
+  showScreen("guidelines-screen");
+}
+
+document.getElementById("start-annotating-btn").addEventListener("click", () => {
+  showStep1();
 });
 
 // ─── Step 1: Category ─────────────────────────────────────────────────────────

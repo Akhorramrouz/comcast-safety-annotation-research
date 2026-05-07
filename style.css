@@ -230,6 +230,96 @@ button:disabled { opacity: .5; cursor: not-allowed; }
   line-height: 1.5;
 }
 
+/* Guidelines screen */
+.guidelines-screen { max-width: 760px; }
+.guidelines-screen .card + .card { margin-top: 1.25rem; }
+body.guidelines-active { align-items: flex-start; }
+
+.gl-notice {
+  background: #fffbeb;
+  border: 1.5px solid #fcd34d;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.25rem;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: #78350f;
+}
+.gl-notice strong { color: #92400e; }
+
+.gl-h2 {
+  font-size: 1.05rem;
+  color: var(--accent);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: .4rem;
+  margin-bottom: 1rem;
+}
+.gl-h3 { font-size: .92rem; font-weight: 700; margin: 1.1rem 0 .4rem; }
+
+.gl-list { padding-left: 1.4rem; margin-bottom: .75rem; }
+.gl-list li { font-size: .92rem; line-height: 1.7; margin-bottom: .35rem; }
+
+.gl-tag {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: .1rem .45rem;
+  vertical-align: middle;
+  margin-right: .35rem;
+  flex-shrink: 0;
+}
+.gl-tag-do   { background: #d1fae5; color: #065f46; }
+.gl-tag-dont { background: #fee2e2; color: #991b1b; }
+
+.gl-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: .55rem .75rem;
+  border-radius: 6px;
+  margin-bottom: .5rem;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+.gl-rule-do   { background: #f0fdf4; border: 1.5px solid #86efac; }
+.gl-rule-dont { background: #fef2f2; border: 1.5px solid #fca5a5; }
+
+.gl-q-block {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.gl-q-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .35rem; }
+.gl-q-text  { font-weight: 600; font-size: .95rem; margin-bottom: .5rem; }
+.gl-q-desc  { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+
+.gl-table { width: 100%; border-collapse: collapse; font-size: .875rem; margin-top: .5rem; margin-bottom: .75rem; }
+.gl-table th { text-align: left; padding: .45rem .7rem; background: var(--bg); font-weight: 700; border: 1px solid var(--border); }
+.gl-table td { padding: .45rem .7rem; border: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+
+.acknowledge-block { padding-top: .25rem; }
+.acknowledge-label {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  font-weight: 500;
+  font-size: .9rem;
+  line-height: 1.55;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.acknowledge-label input[type="checkbox"] {
+  margin-top: .15rem;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 /* Done screen */
 .done-icon { font-size: 3rem; margin-bottom: 1rem; text-align: center; }
 .done-card { text-align: center; }

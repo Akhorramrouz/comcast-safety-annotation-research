@@ -13,7 +13,6 @@
     <div class="card">
       <h1>Prompt Annotation</h1>
       <p class="subtitle">Enter your annotator code and GitHub token to begin.</p>
-      <p class="subtitle" style="margin-bottom:.75rem;">Before starting, please read the <a href="guidelines.html" target="_blank" style="color:var(--accent);font-weight:600;">Annotation Guidelines</a>.</p>
 
       <div id="login-error" class="error-msg"></div>
 
@@ -48,6 +47,141 @@
         </button>
       </form>
     </div>
+  </div>
+
+  <!-- ─── Guidelines screen ───────────────────────────────────────────── -->
+  <div id="guidelines-screen" class="screen guidelines-screen">
+
+    <div class="card">
+      <h1>Annotation Guidelines</h1>
+      <p class="subtitle">Prompt Safety Study &mdash; Please read carefully before you begin annotating.</p>
+
+      <div class="gl-notice">
+        <strong>&#9888; Important:</strong> This is an independent human annotation study. You must complete all annotations <strong>on your own</strong>, without consulting other annotators, and <strong>without using any AI tools</strong> (e.g., ChatGPT, Claude, Gemini, Copilot, or any similar system) at any point during the annotation process. Violations compromise the integrity of the dataset and may result in your annotations being excluded.
+      </div>
+
+      <p style="font-size:.92rem;line-height:1.7;">This study is part of a research project investigating how AI language models respond to prompts across different domains. Your role is to read each prompt and answer three structured questions about it. Your judgements will be used to build a high-quality ground-truth dataset for evaluating AI safety policies.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="gl-h2">Your Role &amp; Responsibilities</h2>
+      <p style="font-size:.92rem;line-height:1.7;">You are a <strong>human annotator</strong>. Your task is to read each prompt carefully and make independent, considered judgements. You are <em>not</em> evaluating the AI's response — you are evaluating the <strong>prompt itself</strong>.</p>
+
+      <h3 class="gl-h3">What you will do</h3>
+      <ul class="gl-list">
+        <li>Read each prompt displayed on screen.</li>
+        <li>Select the domain category or categories the prompt belongs to.</li>
+        <li>Decide whether the prompt violates any of the safety policies shown for that domain.</li>
+        <li>Rate your confidence in that decision.</li>
+        <li>Submit your answers. The tool will automatically save your progress.</li>
+      </ul>
+
+      <h3 class="gl-h3">What you will not do</h3>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Use any AI assistant or chatbot to help evaluate a prompt.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Discuss specific prompts or your answers with other annotators before submitting.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Rush. Quality matters far more than speed.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Leave the page mid-session with unsaved answers — the tool will warn you if you try.</div>
+    </div>
+
+    <div class="card">
+      <h2 class="gl-h2">Annotation Steps</h2>
+
+      <div class="gl-q-block">
+        <div class="gl-q-label">Step 1 &mdash; Category</div>
+        <div class="gl-q-text">Q1 — Select all categories that apply to this prompt.</div>
+        <div class="gl-q-desc">Choose one or more of the predefined domain categories that best describe the subject matter of the prompt. You may select as many as apply, or none if the prompt does not clearly fit any category.</div>
+      </div>
+
+      <h3 class="gl-h3">Domain categories</h3>
+      <table class="gl-table">
+        <tr><th>Category</th><th>Covers</th></tr>
+        <tr><td>Computing</td><td>Software, programming, cybersecurity, data systems</td></tr>
+        <tr><td>History</td><td>Historical events, figures, cultural heritage, revisionism</td></tr>
+        <tr><td>Mental Health</td><td>Psychology, emotional support, therapy, crisis situations</td></tr>
+      </table>
+
+      <h3 class="gl-h3">Tips for Q1</h3>
+      <div class="gl-rule gl-rule-do"><span class="gl-tag gl-tag-do">DO</span> Select multiple categories if the prompt genuinely spans more than one domain.</div>
+      <div class="gl-rule gl-rule-do"><span class="gl-tag gl-tag-do">DO</span> Focus on what the prompt is <em>asking for</em>, not incidental words in the text.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Select a category simply because a keyword from that domain appears in the prompt.</div>
+
+      <div class="gl-q-block" style="margin-top:1.5rem">
+        <div class="gl-q-label">Step 2 &mdash; Policy Violation</div>
+        <div class="gl-q-text">Q2 — Does this prompt's request violate any of the safety policies presented above?</div>
+        <div class="gl-q-desc">
+          On this screen, the safety policies for the prompt's actual domain are displayed. Read them carefully. Then decide: does what the prompt is asking for fall within the scope of any listed violation?<br><br>
+          <strong>Yes, it violates a policy</strong> — the prompt is requesting something that one or more of the listed policies explicitly prohibit or flag as harmful.<br>
+          <strong>No, it does not violate any policy</strong> — the prompt is a legitimate request that does not trigger any of the listed policies.
+        </div>
+      </div>
+
+      <h3 class="gl-h3">Tips for Q2</h3>
+      <div class="gl-rule gl-rule-do"><span class="gl-tag gl-tag-do">DO</span> Read every policy rule before deciding — a violation may be in a rule you almost skipped.</div>
+      <div class="gl-rule gl-rule-do"><span class="gl-tag gl-tag-do">DO</span> Base your decision solely on the policies shown — not on your general moral intuition.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Assume a prompt is safe just because it uses polite or academic language.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Assume a prompt is harmful just because the topic sounds sensitive — context matters.</div>
+
+      <div class="gl-q-block" style="margin-top:1.5rem">
+        <div class="gl-q-label">Step 2 &mdash; Confidence</div>
+        <div class="gl-q-text">Q3 — How confident are you in your response to the preceding question?</div>
+        <div class="gl-q-desc">
+          <strong>Confident</strong> — the prompt clearly does or does not match a policy; you have no meaningful doubt.<br>
+          <strong>Uncertain</strong> — you have a considered opinion but acknowledge genuine ambiguity in how the prompt or policy could be interpreted.
+        </div>
+      </div>
+
+      <h3 class="gl-h3">Tips for Q3</h3>
+      <div class="gl-rule gl-rule-do"><span class="gl-tag gl-tag-do">DO</span> Be honest. Marking uncertainty is valuable data — it signals edge cases for the research team.</div>
+      <div class="gl-rule gl-rule-dont"><span class="gl-tag gl-tag-dont">DON&rsquo;T</span> Always select &ldquo;Confident&rdquo; to appear decisive. Overconfidence degrades data quality.</div>
+    </div>
+
+    <div class="card">
+      <h2 class="gl-h2">Common Edge Cases</h2>
+
+      <h3 class="gl-h3">The prompt asks about a sensitive topic but for legitimate reasons</h3>
+      <p style="font-size:.92rem;line-height:1.7;">A researcher asking how SQL injection works for a security audit is <em>not</em> the same as someone requesting code to attack a live system. Focus on the <strong>intent implied by the phrasing</strong> and whether the policy language covers it.</p>
+
+      <h3 class="gl-h3">The prompt is ambiguous</h3>
+      <p style="font-size:.92rem;line-height:1.7;">If a prompt could be read either as benign or as a policy violation depending on context, annotate based on the <strong>most reasonable interpretation</strong> of a typical user sending that exact text. Mark Q3 as &ldquo;Uncertain.&rdquo;</p>
+
+      <h3 class="gl-h3">The prompt spans multiple domains</h3>
+      <p style="font-size:.92rem;line-height:1.7;">Select all relevant categories in Q1. For Q2, the tool will show policies for the prompt&rsquo;s <em>actual</em> ground-truth domain from the dataset — evaluate against those policies regardless of which categories you selected.</p>
+
+      <h3 class="gl-h3">You are not a subject-matter expert in this domain</h3>
+      <p style="font-size:.92rem;line-height:1.7;">Do your best using the policy descriptions provided. If the technical detail of a prompt is beyond your expertise, rely on the plain-language description of the policy rule and mark Q3 accordingly.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="gl-h2">Data Integrity &amp; Ethical Conduct</h2>
+      <ul class="gl-list">
+        <li><strong>Independent work only.</strong> Each annotation must reflect your own, unaided judgement. Coordination with other annotators before submitting skews inter-annotator agreement metrics.</li>
+        <li><strong>No AI assistance.</strong> Using an AI tool to evaluate a prompt — even to &ldquo;double-check&rdquo; — invalidates your annotation. The entire purpose of this study is to capture <em>human</em> judgement.</li>
+        <li><strong>No reverse-engineering the ground truth.</strong> Do not attempt to infer the &ldquo;correct&rdquo; answer from metadata, column names, or other visible information. Annotate based on what you read.</li>
+        <li><strong>Consistency.</strong> Apply the same standard throughout. If you decide that a particular type of phrasing does not constitute a violation, apply that decision consistently across similar prompts.</li>
+        <li><strong>Reporting concerns.</strong> If you encounter a prompt that you find distressing or that you believe should not be in the dataset, note the prompt number and contact the research lead rather than skipping it silently.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="gl-h2">Practical Tips</h2>
+      <ul class="gl-list">
+        <li>Your progress is saved automatically after each submission — you can close the browser and resume later using your annotator code.</li>
+        <li>Each prompt is reviewed by exactly two annotators. Your contribution directly shapes the reliability of the final dataset.</li>
+        <li>There is no time pressure. A careful annotation session of 30–60 minutes is preferable to a rushed one.</li>
+        <li>If you accidentally close the tab before submitting Step 2, the browser will warn you. If you lose a partially completed annotation, simply re-open the tool — it will resume from the last <em>saved</em> prompt.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="acknowledge-block">
+        <label class="acknowledge-label">
+          <input type="checkbox" id="acknowledge-check">
+          <span>I have read and understood the annotation guidelines, and I agree to complete all annotations independently without the use of any AI tools.</span>
+        </label>
+        <button id="start-annotating-btn" class="btn-primary" disabled>Start Annotating →</button>
+      </div>
+    </div>
+
   </div>
 
   <!-- ─── Step 1: Category question ───────────────────────────────────── -->
